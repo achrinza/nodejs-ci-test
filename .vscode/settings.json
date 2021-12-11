@@ -1,0 +1,6 @@
+{
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": ".github/workflows/*.y?(a)ml",
+    "https://json.schemastore.org/travis.json": "travis.yml"
+  }
+}

@@ -2,7 +2,7 @@
 ---
 branches:
   only:
-    - master
+    - main
 arch:
   - arm64
   - ppc64le
@@ -12,6 +12,7 @@ dist: bionic
 language: node_js
 node_js: [10, 12, 14, 16, 17]
 env:
+  - NPM_MAJOR_VERSION=0
   - NPM_MAJOR_VERSION=6
   - NPM_MAJOR_VERSION=7
   - NPM_MAJOR_VERSION=8
@@ -19,5 +20,9 @@ jobs:
   exclude:
     - node_js: 10
       env: NPM_MAJOR_VERSION=8
-before_install: npm install --global npm@$NPM_MAJOR_VERSION
+before_install: |
+  if [ '0' != "$NPM_MAJOR_VERSION" ]
+  then
+    npm install --global npm@$NPM_MAJOR_VERSION
+  fi
 script: npm test

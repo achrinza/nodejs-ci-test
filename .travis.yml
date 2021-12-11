@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://json.schemastore.org/travis.json
+---
+branches:
+  only:
+    - master
+arch:
+  - arm64
+  - ppc64le
+  - s390x
+os: linux
+dist: bionic
+language: node_js
+node_js: [10, 12, 14, 16, 17]
+env:
+  - NPM_MAJOR_VERSION=6
+  - NPM_MAJOR_VERSION=7
+  - NPM_MAJOR_VERSION=8
+jobs:
+  exclude:
+    - node_js: 10
+      env: NPM_MAJOR_VERSION=8
+before_install: npm install --global npm@$NPM_MAJOR_VERSION
+script: npm test
